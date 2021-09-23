@@ -21,10 +21,6 @@ public class User {
     protected User() {
     }
 
-    public User(String name) {
-        this(name, null);
-    }
-
     public User(String name, String description) {
         this(null, new BasicProfile(name, description));
     }
