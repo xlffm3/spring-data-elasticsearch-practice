@@ -11,10 +11,10 @@ import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.Query;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
-@Component
+@Repository
 public class CustomUserSearchRepositoryImpl implements CustomUserSearchRepository {
 
     private final ElasticsearchOperations elasticsearchOperations;
