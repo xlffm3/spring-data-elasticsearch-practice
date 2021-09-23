@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +28,9 @@ public class UserService {
         return savedUser.getId();
     }
 
-    public List<UserResponseDto> searchByName(String name) {
+    public List<UserResponseDto> searchByName(String name, Pageable pageable) {
         // userSearchRepository.findByBasicProfile_NameContains(name) 가능
-        return userSearchRepository.searchByName(name)
+        return userSearchRepository.searchByName(name, pageable)
             .stream()
             .map(UserResponseDto::from)
             .collect(Collectors.toList());

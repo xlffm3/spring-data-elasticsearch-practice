@@ -4,6 +4,7 @@ import com.example.elasticsearch.user.domain.User;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -19,9 +20,9 @@ public class CustomUserSearchRepositoryImpl implements CustomUserSearchRepositor
     private final ElasticsearchOperations elasticsearchOperations;
 
     @Override
-    public List<User> searchByName(String name) {
+    public List<User> searchByName(String name, Pageable pageable) {
         Criteria criteria = Criteria.where("basicProfile.name").contains(name);
-        Query query = new CriteriaQuery(criteria);
+        Query query = new CriteriaQuery(criteria).setPageable(pageable);
         SearchHits<User> search = elasticsearchOperations.search(query, User.class);
         return search.stream()
             .map(SearchHit::getContent)
