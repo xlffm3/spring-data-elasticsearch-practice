@@ -1,5 +1,6 @@
 package com.example.elasticsearch.configuration;
 
+import com.example.elasticsearch.user.domain.search.UserSearchRepository;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.client.ClientConfiguration;
@@ -7,7 +8,7 @@ import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.config.AbstractElasticsearchConfiguration;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
-@EnableElasticsearchRepositories(basePackages = "com.example.elasticsearch.user.domain.search")
+@EnableElasticsearchRepositories(basePackageClasses = {UserSearchRepository.class})
 @Configuration
 public class ElasticSearchConfig extends AbstractElasticsearchConfiguration {
 
